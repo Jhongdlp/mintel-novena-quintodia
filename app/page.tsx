@@ -1,6 +1,7 @@
 import Slideshow from "@/components/slides/Slideshow";
 import IntroSlide from "@/components/slides/IntroSlide";
 import TraditionSlide from "@/components/slides/TraditionSlide";
+import MagnificatIntroSlide from "@/components/slides/MagnificatIntroSlide";
 import Day5WelcomeSlide from "@/components/slides/Day5WelcomeSlide";
 import FinalSlide from "@/components/slides/FinalSlide";
 import CarolSlide from "@/components/slides/CarolSlide";
@@ -21,6 +22,7 @@ export default function Home() {
       <Slideshow>
         <IntroSlide />
         <TraditionSlide />
+        <MagnificatIntroSlide />
         <Day5WelcomeSlide />
         <CarolSlide />
         <InitialPrayerSlide />

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
-import { Star } from "lucide-react";
+import { Star, TreePine } from "lucide-react";
 
 const container: Variants = {
   hidden: { opacity: 0 },
@@ -57,11 +57,31 @@ export default function IntroSlide() {
         </span>
       </motion.div>
       
-      <motion.h1 variants={item} className="text-7xl md:text-9xl font-serif font-bold mb-6 text-red-800 drop-shadow-sm">
-        Novena de
-        <br />
-        <span className="text-green-800 italic">Aguinaldos</span>
-      </motion.h1>
+      <div className="flex items-center justify-center gap-4 md:gap-12 w-full">
+        <motion.div
+           variants={item}
+           animate={{ rotate: [0, 5, -5, 0] }}
+           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+           className="hidden md:block opacity-80"
+        >
+           <TreePine className="w-24 h-24 md:w-32 md:h-32 text-green-800 drop-shadow-md" />
+        </motion.div>
+
+        <motion.h1 variants={item} className="text-7xl md:text-9xl font-serif font-bold mb-6 text-red-800 drop-shadow-sm">
+          Novena de
+          <br />
+          <span className="text-green-800 italic">Navidad</span>
+        </motion.h1>
+
+        <motion.div
+           variants={item}
+           animate={{ rotate: [0, -5, 5, 0] }}
+           transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+           className="hidden md:block opacity-80"
+        >
+           <TreePine className="w-24 h-24 md:w-32 md:h-32 text-green-800 drop-shadow-md" />
+        </motion.div>
+      </div>
       
       <motion.p variants={item} className="text-xl md:text-2xl text-red-900/80 font-medium max-w-2xl mx-auto leading-relaxed">
         Celebremos juntos la espera del <span className="text-yellow-600 font-bold">Niño Jesús</span>. 

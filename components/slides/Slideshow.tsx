@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronUp, Bell, TreePine, Gift, CandyCane } from "lucide-react";
 import React, { useState, useEffect } from "react";
 
 interface SlideProps {
@@ -77,7 +77,28 @@ export default function Slideshow({ children }: { children: React.ReactNode[] })
           </motion.div>
         </AnimatePresence>
 
-        {/* Navigation Controls */}
+
+
+        {/* Global Festive Decor - Top Corners */}
+        <div className="absolute top-0 left-0 w-32 h-32 z-10 pointer-events-none hidden md:block">
+           <div className="absolute top-0 left-8 w-1 h-16 bg-red-800/20" />
+           <Bell className="absolute top-16 left-4 w-12 h-12 text-yellow-600 rotate-12 opacity-80" />
+           <div className="absolute top-0 left-16 w-1 h-12 bg-green-800/20" />
+           <div className="absolute top-12 left-14 w-8 h-8 rounded-full bg-red-600 opacity-60 animate-pulse" />
+        </div>
+
+        <div className="absolute top-0 right-0 w-32 h-32 z-10 pointer-events-none hidden md:block">
+           <div className="absolute top-0 right-12 w-1 h-20 bg-red-800/20" />
+           <CandyCane className="absolute top-20 right-8 w-12 h-12 text-red-600 -rotate-12 opacity-80" />
+        </div>
+
+        {/* Global Festive Decor - Bottom Corners */}
+        <div className="absolute bottom-0 left-0 p-6 z-10 pointer-events-none hidden md:block opacity-20">
+           <div className="flex items-end -space-x-4">
+              <TreePine className="w-40 h-40 text-green-900 drop-shadow-md" />
+              <Gift className="w-20 h-20 text-red-800 mb-2 rotate-6" />
+           </div>
+        </div>
         <div className="absolute bottom-4 right-4 md:bottom-8 md:right-8 flex flex-col gap-4 z-50">
           <button
             onClick={prevSlide}

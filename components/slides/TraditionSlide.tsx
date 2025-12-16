@@ -56,6 +56,18 @@ export default function TraditionSlide() {
           </motion.div>
         ))}
       </div>
+
+
+       <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.5 }}
+        transition={{ delay: 1 }}
+        className="mt-16 flex justify-center gap-8 text-4xl opacity-50 select-none"
+      >
+        <span>🎄</span>
+        <span>🎅</span>
+        <span>🎄</span>
+      </motion.div>
     </div>
   );
 }
