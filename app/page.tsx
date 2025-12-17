@@ -1,6 +1,6 @@
 import Slideshow from "@/components/slides/Slideshow";
 import IntroSlide from "@/components/slides/IntroSlide";
-import TraditionSlide from "@/components/slides/TraditionSlide";
+import QRConnectSlide from "@/components/slides/QRConnectSlide";
 import MagnificatIntroSlide from "@/components/slides/MagnificatIntroSlide";
 import Day5WelcomeSlide from "@/components/slides/Day5WelcomeSlide";
 import FinalSlide from "@/components/slides/FinalSlide";
@@ -22,7 +22,7 @@ export default function Home() {
     <main className="min-h-screen">
       <Slideshow>
         <IntroSlide />
-        <TraditionSlide />
+        <QRConnectSlide />
         <MagnificatIntroSlide />
         <SweetJesusSlide />
         <Day5WelcomeSlide />

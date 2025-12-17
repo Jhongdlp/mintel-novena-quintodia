@@ -22,7 +22,7 @@ export default function InitialPrayerSlide({ onNext }: SlideProps) {
   };
 
   return (
-    <div className="h-full w-full flex flex-col items-center justify-center p-4 md:p-8 overflow-hidden">
+    <div className="h-full w-full flex flex-col items-center justify-center p-4 md:p-8 overflow-y-auto scrollbar-hide">
       <motion.div 
         variants={container}
         initial="hidden"
@@ -34,7 +34,7 @@ export default function InitialPrayerSlide({ onNext }: SlideProps) {
           <span className="text-xs md:text-sm font-bold tracking-[0.3em] text-red-600 uppercase mb-1 block animate-pulse">
             Reflexión Comunitaria
           </span>
-          <h2 className="text-2xl md:text-4xl font-serif font-bold text-red-900 border-b-2 border-yellow-400 inline-block pb-1">
+          <h2 className="text-4xl md:text-6xl font-serif font-bold text-red-900 border-b-2 border-yellow-400 inline-block pb-1">
             Oración Inicial
           </h2>
         </motion.div>

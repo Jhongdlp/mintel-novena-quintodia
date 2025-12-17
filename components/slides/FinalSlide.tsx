@@ -189,7 +189,7 @@ export default function FinalSlide({ onNext }: { onNext?: () => void }) {
       >
         <div className="flex items-center gap-4 mb-2 shrink-0">
            <Flower2 className="w-8 h-8 text-pink-400 animate-spin-slow" />
-           <span className="text-pink-100 font-serif tracking-widest uppercase text-lg md:text-xl font-bold">VILLANCICO FINAL</span>
+           <span className="text-pink-100 font-serif tracking-widest uppercase text-base md:text-xl font-bold">VILLANCICO FINAL</span>
            <Flower2 className="w-8 h-8 text-pink-400 animate-spin-slow" />
         </div>
 

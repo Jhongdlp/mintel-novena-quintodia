@@ -67,7 +67,7 @@ export default function IntroSlide() {
            <TreePine className="w-24 h-24 md:w-32 md:h-32 text-green-800 drop-shadow-md" />
         </motion.div>
 
-        <motion.h1 variants={item} className="text-7xl md:text-9xl font-serif font-bold mb-6 text-red-800 drop-shadow-sm">
+        <motion.h1 variants={item} className="text-5xl md:text-9xl font-serif font-bold mb-6 text-red-800 drop-shadow-sm">
           Novena de
           <br />
           <span className="text-green-800 italic">Navidad</span>

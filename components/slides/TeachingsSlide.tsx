@@ -52,7 +52,7 @@ export default function TeachingsSlide({ onNext }: SlideProps) {
                  initial={{ y: 50, opacity: 0 }}
                  animate={{ y: 0, opacity: 1 }}
                  transition={{ delay: 0.8 }}
-                 className="text-5xl md:text-7xl font-serif font-bold text-center px-4"
+                 className="text-4xl md:text-7xl font-serif font-bold text-center px-4"
                >
                  ENSEÑANZA
                </motion.h1>

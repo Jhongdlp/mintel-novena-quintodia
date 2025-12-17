@@ -52,7 +52,7 @@ export default function FarewellSlide() {
         <motion.h1 
           initial={{ scale: 0.8 }}
           animate={{ scale: 1 }}
-          className="text-5xl md:text-7xl font-serif font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-800 mb-8 drop-shadow-sm"
+          className="text-4xl md:text-7xl font-serif font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-800 mb-8 drop-shadow-sm"
         >
           ¡Feliz Navidad!
         </motion.h1>

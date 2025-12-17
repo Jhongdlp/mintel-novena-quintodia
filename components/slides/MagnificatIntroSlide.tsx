@@ -52,7 +52,7 @@ export default function MagnificatIntroSlide({ onNext, isActive }: SlideProps) {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.8, duration: 0.8, type: "spring" }}
-            className="text-5xl md:text-8xl font-serif font-bold text-transparent bg-clip-text bg-gradient-to-br from-yellow-200 via-white to-yellow-100 drop-shadow-[0_4px_10px_rgba(0,0,0,0.5)]"
+            className="text-4xl md:text-8xl font-serif font-bold text-transparent bg-clip-text bg-gradient-to-br from-yellow-200 via-white to-yellow-100 drop-shadow-[0_4px_10px_rgba(0,0,0,0.5)]"
           >
             EL MAGNIFICAT
           </motion.h1>

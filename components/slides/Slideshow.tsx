@@ -99,18 +99,18 @@ export default function Slideshow({ children }: { children: React.ReactNode[] })
               <Gift className="w-20 h-20 text-red-800 mb-2 rotate-6" />
            </div>
         </div>
-        <div className="absolute bottom-4 right-4 md:bottom-8 md:right-8 flex flex-col gap-4 z-50">
+        <div className="absolute bottom-20 right-4 md:bottom-8 md:right-8 flex flex-col gap-4 z-50">
           <button
             onClick={prevSlide}
             disabled={currentSlide === 0}
-            className={`p-2 rounded-full disabled:opacity-30 disabled:cursor-not-allowed transition-colors ${controlColors}`}
+            className={`p-3 md:p-2 rounded-full disabled:opacity-30 disabled:cursor-not-allowed transition-colors ${controlColors}`}
           >
             <ChevronUp className="w-6 h-6" />
           </button>
           <button
             onClick={nextSlide}
             disabled={currentSlide === totalSlides - 1}
-            className={`p-2 rounded-full disabled:opacity-30 disabled:cursor-not-allowed transition-colors ${controlColors}`}
+            className={`p-3 md:p-2 rounded-full disabled:opacity-30 disabled:cursor-not-allowed transition-colors ${controlColors}`}
           >
             <ChevronDown className="w-6 h-6" />
           </button>

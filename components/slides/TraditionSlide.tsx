@@ -24,14 +24,13 @@ const prayers = [
 export default function TraditionSlide() {
   return (
     <div className="flex flex-col items-center max-w-6xl w-full">
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="mb-16 text-center"
+      <motion.h2 
+        initial={{ y: -50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        className="text-4xl md:text-6xl font-serif font-bold text-red-800 mb-8 text-center"
       >
-        <h2 className="text-6xl font-serif font-bold text-green-900 mb-4">Nuestras Tradiciones</h2>
-        <p className="text-xl text-red-800/70 italic">La esencia de la Novena</p>
-      </motion.div>
+        Tradición
+      </motion.h2>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
         {prayers.map((p, i) => (
