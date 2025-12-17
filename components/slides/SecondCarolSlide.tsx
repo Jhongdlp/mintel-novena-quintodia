@@ -2,46 +2,168 @@
 
 import { motion } from "framer-motion";
 import { Music, Bell, Mic, ArrowRight, Sparkles } from "lucide-react";
-import { useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { SlideshowContext } from "@/components/slides/Slideshow";
 
 interface SlideProps {
   onNext?: () => void;
 }
 
+// Data for Karaoke
+const lyricsData = [
+  { text: "CAMPANAS DE BELÉN", duration: 4, isTitle: true },
+  { text: "", duration: 1 },
+  // Verse 1
+  { text: "Campana sobre campana,", duration: 3 },
+  { text: "y sobre campana una,", duration: 3 },
+  { text: "asómate a la ventana,", duration: 3 },
+  { text: "verás al Niño en la cuna.", duration: 3 },
+  { text: "", duration: 0.5 },
+  // Chorus
+  { text: "Belén, campanas de Belén,", duration: 3, isChorus: true },
+  { text: "que los ángeles tocan", duration: 3, isChorus: true },
+  { text: "¿qué nuevas nos traes?", duration: 3, isChorus: true },
+  { text: "", duration: 1 },
+  // Verse 2
+  { text: "Recogido tu rebaño", duration: 3 },
+  { text: "¿a dónde vas pastorcillo?", duration: 3 },
+  { text: "Voy a llevar al portal", duration: 3 },
+  { text: "requesón, manteca y vino.", duration: 3 },
+  { text: "", duration: 0.5 },
+  // Chorus
+  { text: "Belén, campanas de Belén,", duration: 3, isChorus: true },
+  { text: "que los ángeles tocan", duration: 3, isChorus: true },
+  { text: "¿qué nuevas nos traes?", duration: 3, isChorus: true },
+  { text: "", duration: 1 },
+  // Verse 3
+  { text: "Campana sobre campana,", duration: 3 },
+  { text: "y sobre campana dos,", duration: 3 },
+  { text: "asómate a la ventana,", duration: 3 },
+  { text: "verás al Hijo de Dios.", duration: 3 },
+  { text: "", duration: 0.5 },
+  // Chorus x2
+  { text: "Belén, campanas de Belén,", duration: 3, isChorus: true },
+  { text: "que los ángeles tocan", duration: 3, isChorus: true },
+  { text: "¿qué nuevas nos traes?", duration: 3, isChorus: true },
+  { text: "", duration: 0.5 },
+  { text: "Belén, campanas de Belén,", duration: 3, isChorus: true },
+  { text: "que los ángeles tocan", duration: 3, isChorus: true },
+  { text: "¿qué nuevas nos traes?", duration: 3, isChorus: true },
+];
+
+// Componente para una linea de karaoke
+const KaraokeLine = ({ 
+  text, 
+  startTime, 
+  duration, 
+  isChorus, 
+  isTitle,
+  containerRef 
+}: { 
+  text: string; 
+  startTime: number; 
+  duration: number; 
+  isChorus?: boolean; 
+  isTitle?: boolean;
+  containerRef: React.RefObject<HTMLDivElement | null>;
+}) => {
+  const [isPlaying, setIsPlaying] = React.useState(false);
+  const lineRef = React.useRef<HTMLParagraphElement>(null);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsPlaying(true);
+      // Auto-scroll logic
+      if (lineRef.current && containerRef.current) {
+        const container = containerRef.current;
+        const line = lineRef.current;
+        const topPos = line.offsetTop - container.offsetTop;
+        container.scrollTo({
+          top: topPos - container.clientHeight / 2 + line.clientHeight / 2,
+          behavior: 'smooth'
+        });
+      }
+    }, startTime * 1000);
+
+    return () => clearTimeout(timer);
+  }, [startTime, containerRef]);
+
+  if (!text) return <div className="h-8" />;
+
+  return (
+    <p 
+      ref={lineRef}
+      className={`relative inline-block text-xl md:text-3xl tracking-wide my-2 transition-all duration-500 ${
+        isTitle ? "font-serif text-3xl md:text-5xl mb-8 font-bold text-yellow-400" : ""
+      } ${
+        isChorus ? "font-bold" : "font-medium"
+      } ${
+        isPlaying ? "scale-105" : "scale-100 opacity-60"
+      }`}
+    >
+      {/* Capa Base (Texto inactivo) */}
+      <span className="text-white/30 truncate">{text}</span>
+      
+      {/* Capa de Relleno (Texto activo animado) */}
+      <motion.span
+        initial={{ width: "0%" }}
+        animate={isPlaying ? { width: "100%" } : { width: "0%" }}
+        transition={{ duration: duration, ease: "linear" }}
+        className={`absolute top-0 left-0 overflow-hidden whitespace-nowrap ${
+          isChorus ? "text-yellow-400 drop-shadow-[0_0_10px_rgba(250,204,21,0.8)]" : "text-white drop-shadow-md pb-1"
+        }`}
+      >
+        {text}
+      </motion.span>
+    </p>
+  );
+};
+
 export default function SecondCarolSlide({ onNext }: SlideProps) {
   const { setControlTheme } = useContext(SlideshowContext);
+  const containerRef = React.useRef<HTMLDivElement>(null);
+
+  // Calculate start times
+  const lyricsWithTiming = React.useMemo(() => {
+    let currentTime = 1;
+    return lyricsData.map(line => {
+      const item = { ...line, startTime: currentTime };
+      currentTime += line.duration;
+      return item;
+    });
+  }, []);
+
+  // Calculate total duration for looping
+  const totalDuration = React.useMemo(() => {
+    return lyricsWithTiming[lyricsWithTiming.length - 1].startTime + lyricsWithTiming[lyricsWithTiming.length - 1].duration + 2;
+  }, [lyricsWithTiming]);
+
+  const [loopKey, setLoopKey] = React.useState(0);
 
   useEffect(() => {
     setControlTheme("light");
     return () => setControlTheme("default");
   }, [setControlTheme]);
 
-  const lyrics = [
-    "Campana sobre campana,",
-    "y sobre campana una,",
-    "asómate a la ventana,",
-    "verás al Niño en la cuna.",
-    "",
-    "Belén, campanas de Belén,",
-    "que los ángeles tocan",
-    "¿qué nueva me traéis?",
-    "",
-    "Recogido tu rebaño",
-    "¿a dónde vas pastorcito?",
-    "Voy a llevar al portal",
-    "requesón, manteca y vino.",
-    "",
-    "Belén, campanas de Belén...",
-  ];
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setLoopKey(prev => prev + 1);
+       // Reset scroll
+       if (containerRef.current) {
+        containerRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }, totalDuration * 1000);
+
+    return () => clearInterval(timer);
+  }, [totalDuration]);
 
   return (
-    <div className="h-full w-full flex flex-col items-center justify-center relative">
+    <div className="h-full w-full flex flex-col items-center justify-center relative overscroll-none overflow-hidden">
       {/* Fullscreen Fixed Background */}
-      <div className="fixed inset-0 z-0 bg-gradient-to-tl from-yellow-700 via-red-800 to-yellow-900 bg-[size:400%_400%] animate-gradient-xy pointer-events-none" />
+      <div className="fixed inset-0 z-0 bg-gradient-to-tl from-yellow-900 via-red-900 to-yellow-950 bg-[size:400%_400%] animate-gradient-xy pointer-events-none" />
       
       {/* Background Animated Bells */}
-      {[...Array(5)].map((_, i) => (
+      {[...Array(6)].map((_, i) => (
         <motion.div
           key={i}
           initial={{ y: -100, x: Math.random() * 100 + "vw", opacity: 0, rotate: -20 }}
@@ -52,9 +174,9 @@ export default function SecondCarolSlide({ onNext }: SlideProps) {
             delay: Math.random() * 5,
             ease: "linear"
           }}
-          className="fixed z-0 text-yellow-500/20"
+          className="absolute z-0 text-yellow-500/10 pointer-events-none"
         >
-          <Bell className={`w-${Math.random() > 0.5 ? 16 : 24} h-${Math.random() > 0.5 ? 16 : 24}`} />
+          <Bell className={`w-${Math.random() > 0.5 ? 16 : 32} h-${Math.random() > 0.5 ? 16 : 32}`} />
         </motion.div>
       ))}
 
@@ -62,47 +184,44 @@ export default function SecondCarolSlide({ onNext }: SlideProps) {
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.6 }}
-        className="text-center z-10 w-full max-w-4xl px-4 flex flex-col items-center"
+        className="z-10 w-full max-w-5xl px-4 flex flex-col items-center h-[85vh]"
       >
-        <div className="flex items-center justify-center gap-4 mb-4 md:mb-8">
-           <Bell className="w-12 h-12 text-yellow-400 animate-bounce" />
-           <h2 className="text-4xl md:text-6xl font-serif font-bold text-white drop-shadow-[0_4px_4px_rgba(0,0,0,0.5)]">
-             Villancico
-           </h2>
-           <Bell className="w-12 h-12 text-yellow-400 animate-bounce delay-75" />
+        <div className="flex items-center gap-4 mb-2 shrink-0">
+           <Bell className="w-8 h-8 text-yellow-400 animate-bounce" />
+           <span className="text-yellow-100 font-serif tracking-widest uppercase text-lg md:text-xl font-bold">VILLANCICO</span>
+           <Bell className="w-8 h-8 text-yellow-400 animate-bounce delay-75" />
         </div>
 
-        <div className="bg-black/20 backdrop-blur-md rounded-3xl p-8 md:p-10 border border-white/10 shadow-2xl relative w-full mb-8">
-          <Sparkles className="absolute top-4 left-4 text-yellow-300 animate-pulse w-6 h-6" />
-          <Sparkles className="absolute bottom-4 right-4 text-yellow-300 animate-pulse w-6 h-6" />
+        {/* Karaoke Screen */}
+        <div className="flex-1 w-full bg-black/40 backdrop-blur-xl rounded-[3rem] border-4 border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)] overflow-hidden relative flex flex-col items-center p-8">
           
-          <div className="absolute -top-6 left-1/2 -translate-x-1/2 bg-yellow-500 text-red-900 px-6 py-1 rounded-full text-sm font-bold shadow-lg uppercase tracking-wider">
-            Campana sobre Campana
+          <div className="absolute top-0 w-full h-20 bg-gradient-to-b from-black/60 to-transparent z-20 pointer-events-none" />
+          <div className="absolute bottom-0 w-full h-20 bg-gradient-to-t from-black/60 to-transparent z-20 pointer-events-none" />
+
+          <div 
+            ref={containerRef}
+            className="w-full h-full overflow-y-auto no-scrollbar scroll-smooth flex flex-col items-center py-[40vh]"
+          >
+             <div key={loopKey} className="flex flex-col items-center w-full">
+              {lyricsWithTiming.map((line, index) => (
+                <KaraokeLine 
+                  key={index} 
+                  {...line} 
+                  containerRef={containerRef}
+                />
+              ))}
+            </div>
           </div>
 
-          <div className="space-y-4 max-h-[40vh] md:max-h-[50vh] overflow-y-auto custom-scrollbar mt-4">
-            {lyrics.map((line, index) => (
-              <motion.p
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ delay: index * 0.05 }}
-                viewport={{ margin: "-20px" }}
-                className={`text-xl md:text-3xl font-medium tracking-wide ${
-                  line === "" ? "h-6" : "text-white/95 drop-shadow-md"
-                } ${index >= 5 && index <= 7 ? "text-yellow-300 font-bold scale-105" : ""}`}
-              >
-                {line}
-              </motion.p>
-            ))}
-          </div>
+          <Sparkles className="absolute top-6 right-6 text-yellow-300 animate-pulse w-8 h-8 opacity-50" />
+          <Sparkles className="absolute bottom-6 left-6 text-yellow-300 animate-pulse w-8 h-8 opacity-50" />
         </div>
 
         <motion.button 
           onClick={onNext}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="px-8 py-3 bg-white text-red-900 rounded-full font-bold text-lg hover:bg-gray-100 transition-colors shadow-lg flex items-center gap-2"
+          className="mt-6 px-10 py-3 bg-white text-red-950 rounded-full font-bold text-lg hover:bg-gray-100 transition-colors shadow-lg flex items-center gap-2 shrink-0 border border-gray-200"
         >
           Siguiente: Enseñanza <ArrowRight className="w-5 h-5" />
         </motion.button>

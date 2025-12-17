@@ -12,8 +12,9 @@ import SecondCarolSlide from "@/components/slides/SecondCarolSlide";
 import TeachingsSlide from "@/components/slides/TeachingsSlide";
 import DialogueSlide from "@/components/slides/DialogueSlide";
 import CommitmentSlide from "@/components/slides/CommitmentSlide";
+import SweetJesusSlide from "@/components/slides/SweetJesusSlide";
 import PrayersSlide from "@/components/slides/PrayersSlide";
-import FinalCarolSlide from "@/components/slides/FinalCarolSlide";
+import FarewellSlide from "@/components/slides/FarewellSlide";
 
 
 export default function Home() {
@@ -23,6 +24,7 @@ export default function Home() {
         <IntroSlide />
         <TraditionSlide />
         <MagnificatIntroSlide />
+        <SweetJesusSlide />
         <Day5WelcomeSlide />
         <CarolSlide />
         <InitialPrayerSlide />
@@ -32,9 +34,10 @@ export default function Home() {
         <TeachingsSlide />
         <DialogueSlide />
         <CommitmentSlide />
+        
         <PrayersSlide />
-        <FinalCarolSlide />
         <FinalSlide />
+        <FarewellSlide />
       </Slideshow>
     </main>
   );

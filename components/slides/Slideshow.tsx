@@ -47,11 +47,11 @@ export default function Slideshow({ children }: { children: React.ReactNode[] })
   }, [currentSlide]);
 
   const controlColors = controlTheme === "light" 
-    ? "text-white bg-white/10 hover:bg-white/20" 
+    ? "text-white bg-black/60 hover:bg-black/80 border border-white/50 shadow-xl backdrop-blur-md" 
     : "text-red-900 bg-red-800/10 hover:bg-red-800/20";
     
-  const progressActive = controlTheme === "light" ? "bg-white" : "bg-red-700";
-  const progressInactive = controlTheme === "light" ? "bg-white/30" : "bg-red-300";
+  const progressActive = controlTheme === "light" ? "bg-white shadow-[0_0_10px_rgba(255,255,255,0.8)]" : "bg-red-700";
+  const progressInactive = controlTheme === "light" ? "bg-white/50 border border-white/20" : "bg-red-300";
 
   return (
     <SlideshowContext.Provider value={{ setControlTheme }}>
