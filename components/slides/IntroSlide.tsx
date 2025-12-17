@@ -46,9 +46,9 @@ export default function IntroSlide() {
           repeat: Infinity, 
           repeatType: "reverse" 
         }}
-        className="mb-8"
+        className="mb-4"
       >
-        <Star className="w-24 h-24 text-yellow-500 fill-yellow-400 drop-shadow-lg" />
+        <Star className="w-16 h-16 md:w-24 md:h-24 text-yellow-500 fill-yellow-400 drop-shadow-lg" />
       </motion.div>
 
       <motion.div variants={item} className="mb-4">
@@ -57,7 +57,7 @@ export default function IntroSlide() {
         </span>
       </motion.div>
       
-      <div className="flex items-center justify-center gap-4 md:gap-12 w-full">
+      <div className="flex items-center justify-center gap-4 md:gap-12 w-full mb-4">
         <motion.div
            variants={item}
            animate={{ rotate: [0, 5, -5, 0] }}
@@ -67,10 +67,10 @@ export default function IntroSlide() {
            <TreePine className="w-24 h-24 md:w-32 md:h-32 text-green-800 drop-shadow-md" />
         </motion.div>
 
-        <motion.h1 variants={item} className="text-4xl md:text-8xl font-serif font-bold mb-6 text-red-800 drop-shadow-sm leading-tight">
+        <motion.h1 variants={item} className="text-4xl md:text-8xl font-serif font-bold text-red-800 drop-shadow-sm leading-tight">
           Novena de Navidad
-          <span className="block text-3xl md:text-6xl text-green-800 mt-2">de Mintel</span>
-          <span className="block text-2xl md:text-5xl text-yellow-600 mt-4 italic">- Quinto día -</span>
+          <span className="block text-3xl md:text-6xl text-green-800 mt-2">de SFSIED</span>
+          <span className="block text-2xl md:text-5xl text-yellow-600 mt-2 italic">- Quinto día -</span>
         </motion.h1>
 
         <motion.div
@@ -88,7 +88,7 @@ export default function IntroSlide() {
         Un tiempo de unión, oración y familia.
       </motion.p>
       
-      <motion.div variants={item} className="mt-12 flex gap-4">
+      <motion.div variants={item} className="mt-6 flex gap-4">
         <div className="w-3 h-3 rounded-full bg-red-500 animate-bounce" style={{ animationDelay: "0s" }} />
         <div className="w-3 h-3 rounded-full bg-green-500 animate-bounce" style={{ animationDelay: "0.2s" }} />
         <div className="w-3 h-3 rounded-full bg-yellow-500 animate-bounce" style={{ animationDelay: "0.4s" }} />
