@@ -25,25 +25,27 @@ export default function WordOfGodSlide({ onNext }: SlideProps) {
         {/* Giant Title Animation Container */}
         <motion.div 
           layout
-          className={`flex flex-col items-center justify-center transition-all duration-1000 ${
+          transition={{ duration: 1.2, type: "spring", bounce: 0.15 }}
+          className={`flex flex-col items-center justify-center ${
             isTitleAnimated ? "h-auto mb-4 md:mb-8 shrink-0 py-10" : "h-full absolute inset-0 z-50 bg-white/90 backdrop-blur-xl"
           }`}
         >
-          <motion.div layout className="flex items-center gap-4">
+          <motion.div layout transition={{ duration: 1.2, type: "spring", bounce: 0.15 }} className="flex items-center gap-4">
             <motion.div 
               layout 
               initial={{ scale: 0, rotate: -180 }}
               animate={{ scale: 1, rotate: 0 }}
               transition={{ delay: 0.5, type: "spring" }}
             >
-               <BookOpen className={`${isTitleAnimated ? "w-8 h-8 md:w-12 md:h-12" : "w-32 h-32"} text-red-800 transition-all duration-1000`} />
+               <BookOpen className={`${isTitleAnimated ? "w-8 h-8 md:w-12 md:h-12" : "w-24 h-24 md:w-32 md:h-32"} text-red-800`} />
             </motion.div>
             
             <motion.h1 
               layout
+              transition={{ duration: 1.2, type: "spring", bounce: 0.15 }}
               className={`font-serif font-bold text-red-900 leading-tight text-center ${
-                isTitleAnimated ? "text-3xl md:text-5xl" : "text-6xl md:text-9xl drop-shadow-2xl z-50"
-              } transition-all duration-1000`}
+                isTitleAnimated ? "text-2xl md:text-5xl" : "text-4xl md:text-9xl drop-shadow-2xl z-50"
+              }`}
             >
               PALABRA<br/>DE DIOS
             </motion.h1>

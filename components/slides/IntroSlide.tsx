@@ -53,7 +53,7 @@ export default function IntroSlide() {
 
       <motion.div variants={item} className="mb-4">
         <span className="px-6 py-2 rounded-full border border-red-200 bg-white/50 text-red-800 text-sm tracking-[0.2em] font-serif uppercase">
-          16 al 24 de Diciembre
+          17/12/2025
         </span>
       </motion.div>
       
@@ -67,10 +67,10 @@ export default function IntroSlide() {
            <TreePine className="w-24 h-24 md:w-32 md:h-32 text-green-800 drop-shadow-md" />
         </motion.div>
 
-        <motion.h1 variants={item} className="text-5xl md:text-9xl font-serif font-bold mb-6 text-red-800 drop-shadow-sm">
-          Novena de
-          <br />
-          <span className="text-green-800 italic">Navidad</span>
+        <motion.h1 variants={item} className="text-4xl md:text-8xl font-serif font-bold mb-6 text-red-800 drop-shadow-sm leading-tight">
+          Novena de Navidad
+          <span className="block text-3xl md:text-6xl text-green-800 mt-2">de Mintel</span>
+          <span className="block text-2xl md:text-5xl text-yellow-600 mt-4 italic">- Quinto día -</span>
         </motion.h1>
 
         <motion.div
